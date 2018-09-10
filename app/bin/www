@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var app = require('..');
 var debug = require('debug')('global-nightlights-api:server');
 var http = require('http');
 
