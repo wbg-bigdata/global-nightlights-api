@@ -7,7 +7,8 @@
     "url": "https://developmentseed.org"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev:start": "NODE_ENV=development nodemon index.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -16,5 +17,8 @@
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
     "morgan": "~1.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
   }
 }
