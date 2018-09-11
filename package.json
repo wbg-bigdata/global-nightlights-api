@@ -1,24 +1,42 @@
 {
   "name": "global-nightlights-api",
+  "description": "Global Night Lights Data Service",
   "version": "0.0.0",
-  "private": true,
+  "main": "app",
+  "keywords": [
+  ],
   "author": {
     "name": "Development Seed",
-    "url": "https://developmentseed.org"
+    "url": "https://www.devseed.com"
+  },
+  "contributors": [],
+  "bugs": {},
+  "directories": {
+    "lib": "app"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "^8.0.0",
+    "yarn": ">= 0.18.0"
   },
   "scripts": {
-    "start": "node index.js",
-    "dev:start": "NODE_ENV=development nodemon index.js"
+    "eslint": "eslint app/. --config .eslintrc.json",
+    "dev": "nodemon app/",
+    "start": "node app/"
   },
   "dependencies": {
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "express": "~4.16.0",
-    "http-errors": "~1.6.2",
-    "jade": "~1.11.0",
-    "morgan": "~1.9.0"
+    "@feathersjs/configuration": "^2.0.2",
+    "@feathersjs/errors": "^3.3.2",
+    "@feathersjs/express": "^1.2.5",
+    "@feathersjs/feathers": "^3.2.1",
+    "compression": "^1.7.3",
+    "cors": "^2.8.4",
+    "helmet": "^3.13.0",
+    "serve-favicon": "^2.5.0",
+    "winston": "^3.0.0"
   },
   "devDependencies": {
+    "eslint": "^5.5.0",
     "nodemon": "^1.18.4"
   }
 }
