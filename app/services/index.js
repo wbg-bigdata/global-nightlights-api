@@ -1,3 +1,5 @@
-// eslint-disable-next-line no-unused-vars
+const positions = require('./positions/positions.service.js');
+
 module.exports = function (app) {
+  app.configure(positions);
 };
