@@ -69,7 +69,7 @@ module.exports = function() {
       const observationsQuery = `
       SELECT "positionId", year, month, day, rade9
       FROM observations
-      WHERE "positionId" = ANY(ARRAY['${positionIds.join("','")}']) limit 50;
+      WHERE "positionId" = ANY(ARRAY['${positionIds.join("','")}']);
       `;
 
       try {
