@@ -2,9 +2,5 @@
   "host": "localhost",
   "port": 3030,
   "public": "../public/",
-  "paginate": {
-    "default": 10,
-    "max": 50
-  },
-  "postgres": "postgres://gbl:gbl@localhost:15433/gbl"
+  "postgres": "postgres://nightlights:nightlights@localhost:15432/nightlights"
 }

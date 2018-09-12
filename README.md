@@ -21,7 +21,7 @@ Add a PostgresSQL connection string at `config/default.json`:
   "host": "localhost",
   "port": 3030,
   "public": "../public/",
-  "postgres": "postgres://gbl:gbl@localhost:15432/gbl" <- Change here
+  "postgres": "postgres://nightlights:nightlights@localhost:15432/nightlights" <- Change here
 }
 ```
 
