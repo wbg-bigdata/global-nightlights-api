@@ -32,6 +32,7 @@
     "cors": "^2.8.4",
     "feathers-sequelize": "^3.1.2",
     "helmet": "^3.13.0",
+    "lodash": "^4.17.10",
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.38.0",
