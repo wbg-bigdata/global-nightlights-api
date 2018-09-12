@@ -2,30 +2,18 @@ module.exports = {
   before: {
     all: [],
     find: [],
-    get: [],
-    create: [],
-    update: [],
-    patch: [],
-    remove: []
+    get: []
   },
 
   after: {
     all: [],
     find: [],
-    get: [],
-    create: [],
-    update: [],
-    patch: [],
-    remove: []
+    get: []
   },
 
   error: {
     all: [],
     find: [],
-    get: [],
-    create: [],
-    update: [],
-    patch: [],
-    remove: []
+    get: []
   }
 };

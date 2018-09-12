@@ -1,20 +1,29 @@
-const Sequelize = require('sequelize');
+const Sequelize = require("sequelize");
 const DataTypes = Sequelize.DataTypes;
 
 module.exports = function(app) {
-  const sequelizeClient = app.get('sequelizeClient');
+  const sequelizeClient = app.get("sequelizeClient");
   const positions = sequelizeClient.define(
-    'positions',
+    "positions",
     {
       id: {
         type: DataTypes.STRING,
         primaryKey: true
       },
-      properties: {
-        type: DataTypes.JSONB
+      dist2010: {
+        type: DataTypes.INTEGER
+      },
+      prp_sets: {
+        type: DataTypes.FLOAT
+      },
+      prp_sets_dist1: {
+        type: DataTypes.FLOAT
+      },
+      prp_sets_dist3: {
+        type: DataTypes.FLOAT
       },
       geometry: {
-        type: DataTypes.GEOMETRY('POINT', 4326)
+        type: DataTypes.GEOMETRY("POINT", 4326)
       }
     },
     {
