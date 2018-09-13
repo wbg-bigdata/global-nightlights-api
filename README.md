@@ -14,16 +14,15 @@ Node.js 8+ is required.
 
 ### Configure
 
-Add a PostgresSQL connection string at `config/default.json`:
+Create file `config/development.json` and set PostgreSQL connection string as bellow:
 
 ```json
 {
-  "host": "localhost",
-  "port": 3030,
-  "public": "../public/",
-  "postgres": "postgres://nightlights:nightlights@localhost:15432/nightlights" <- Change here
+  "postgres": "postgres://nightlights:nightlights@localhost:5432/nightlights"
 }
 ```
+
+Check [@feathersjs/configuration docs](https://docs.feathersjs.com/api/configuration.html) to learn more about configuration options.
 
 ### Start development server
 

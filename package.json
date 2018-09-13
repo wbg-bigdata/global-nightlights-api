@@ -20,7 +20,7 @@
   },
   "scripts": {
     "eslint": "eslint app/. --config .eslintrc.json",
-    "dev": "nodemon app/",
+    "dev": "NODE_ENV=development nodemon app/",
     "start": "node app/"
   },
   "dependencies": {
