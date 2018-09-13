@@ -114,3 +114,5 @@ data/
 # Ignore feathers configuration files other then the default
 config/*
 !config/default.json
+!config/custom-environment-variables.json
+
