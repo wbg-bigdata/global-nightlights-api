@@ -49,7 +49,7 @@ module.exports = function() {
       positions = results[0];
       // console.log(p
     } catch (sequelizeError) {
-      err = sequelizeError;
+      if (sequelizeError) return res.status(500).json({ message: "Internal error." });
     }
 
     if (positions.length > 0) {
@@ -108,7 +108,7 @@ module.exports = function() {
         });
 
       } catch (sequelizeError) {
-        if (err) return res.status(500).json({ message: "Internal error." });
+        if (sequelizeError) return res.status(500).json({ message: "Internal error." });
       }
     }
 
