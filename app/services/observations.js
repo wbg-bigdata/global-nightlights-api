@@ -1,5 +1,6 @@
 const _ = require("lodash");
 const errors = require("@feathersjs/errors");
+const logger = require("../logger");
 
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
@@ -43,18 +44,22 @@ module.exports = function() {
       LIMIT 1;
     `;
 
+    logger.info(`${req.ip} is querying observations nearby ${nearby}.`);
+
     let positions;
     try {
       const results = await sequelize.query(nearestPositionsQuery);
       positions = results[0];
-      // console.log(p
     } catch (sequelizeError) {
+      logger.error(sequelizeError.message);
       if (sequelizeError) return res.status(500).json({ message: "Internal error." });
     }
 
     if (positions.length > 0) {
       // Get positions ids for observations query
       const positionIds = _.map(positions, p => p.id);
+
+      logger.info(`Positions found: ${positionIds}`);
 
       // Add "data" property
       positions = _.map(positions, p => {
@@ -109,6 +114,7 @@ module.exports = function() {
         });
 
       } catch (sequelizeError) {
+        logger.error(sequelizeError.message);
         if (sequelizeError) return res.status(500).json({ message: "Internal error." });
       }
     }
