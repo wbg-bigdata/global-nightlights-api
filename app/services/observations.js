@@ -67,9 +67,10 @@ module.exports = function() {
 
       // Prepare query
       const observationsQuery = `
-      SELECT "positionId", year, month, day, rade9
+      SELECT *
       FROM observations
-      WHERE "positionId" = ANY(ARRAY['${positionIds.join("','")}']);
+      WHERE "positionId" = ANY(ARRAY['${positionIds.join("','")}'])
+      ORDER BY scanned_at;
       `;
 
       try {
