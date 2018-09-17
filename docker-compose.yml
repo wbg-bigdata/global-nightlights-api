@@ -1,0 +1,12 @@
+version: '3'
+services:
+  dev-db:
+    image: mdillon/postgis:9.6
+    ports:
+      - 15433:5432
+    volumes:
+      - ./data/dev-db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=nightlights
+      - POSTGRES_USER=nightlights
+      - POSTGRES_PASSWORD=nightlights
