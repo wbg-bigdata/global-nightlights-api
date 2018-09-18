@@ -1,5 +1,5 @@
 module.exports = {
-  baseurl: 'http://wbg-bigdata.github.io/global-nightlights-api',
+  baseurl: 'https://wbg-bigdata.github.io/global-nightlights-api',
   title: 'Global Night Lights',
   description: 'Visualization of light intensity seen from space.',
 
