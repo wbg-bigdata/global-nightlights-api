@@ -51,7 +51,7 @@ module.exports = function() {
     if (limit && (!isInt(limit) || parseInt(limit) > 20)) {
       return res.status(400).json({
         message:
-          'Invalid "limit" parameter, must be an integer lower or equal to 10.'
+          'Invalid "limit" parameter, must be an integer lower or equal to 20.'
       });
     }
 
