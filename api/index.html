@@ -13,7 +13,7 @@
 <meta name="twitter:site" content="" />
 <meta name="twitter:title" content="Global Night Lights">
 <meta name="twitter:description" content="Visualization of light intensity seen from space." />
-<meta name="twitter:image:src" content="http://localhost:3000/assets/graphics/meta/default-meta-image.png" />
+<meta name="twitter:image:src" content="https://wbg-bigdata.github.io/global-nightlights-api/assets/graphics/meta/default-meta-image.png" />
 <!--/ Twitter -->
 
 <!-- OG -->
@@ -22,24 +22,21 @@
 <meta property="og:url" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:description" content="Visualization of light intensity seen from space." />
-<meta property="og:image" content="http://localhost:3000/assets/graphics/meta/default-meta-image.png" />
+<meta property="og:image" content="https://wbg-bigdata.github.io/global-nightlights-api/assets/graphics/meta/default-meta-image.png" />
 <!--/ OG -->
 
-<link rel="icon" type="image/png" sizes="96x96" href="http://localhost:3000/assets/graphics/meta/favicon.png" />
-<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:3000/assets/graphics/meta/android-chrome.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:3000/assets/graphics/meta/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="https://wbg-bigdata.github.io/global-nightlights-api/assets/graphics/meta/favicon.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="https://wbg-bigdata.github.io/global-nightlights-api/assets/graphics/meta/android-chrome.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://wbg-bigdata.github.io/global-nightlights-api/assets/graphics/meta/apple-touch-icon.png" />
 
 
 <link rel="author" type="text/plain" href="humans.txt" />
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i" />
 
-<!-- build:css assets/styles/vendor.css -->
-<!-- endbuild -->
 
-<!-- build:css assets/styles/main.css -->
-<link rel="stylesheet" href="/assets/styles/main.css">
-<!-- endbuild -->
+
+<link rel="stylesheet" href="https://wbg-bigdata.github.io/global-nightlights-api/assets/styles/main-6c82db2ac8.css">
 
   </head>
   <body>
@@ -74,7 +71,7 @@
   
   <li>
       
-      <a href="http://localhost:3000/" title="Go to page" class="ppn__menu-item ">Introduction</a>
+      <a href="https://wbg-bigdata.github.io/global-nightlights-api/" title="Go to page" class="ppn__menu-item ">Introduction</a>
       
 
 
@@ -84,7 +81,7 @@
   
   <li>
       
-      <a href="http://localhost:3000/api" title="Go to page" class="ppn__menu-item ppn__menu-item--active">API</a>
+      <a href="https://wbg-bigdata.github.io/global-nightlights-api/api" title="Go to page" class="ppn__menu-item ppn__menu-item--active">API</a>
       
 
 
@@ -94,7 +91,7 @@
   
   <li>
       
-      <a href="http://localhost:3000/about" title="Go to page" class="ppn__menu-item ">About</a>
+      <a href="https://wbg-bigdata.github.io/global-nightlights-api/about" title="Go to page" class="ppn__menu-item ">About</a>
       
 
 
@@ -134,7 +131,93 @@
             <div class="inpage__body">
               <div class="inner">
                 <div class="prose prose--responsive">
-                  <p>Describe API usage.</p>
+                  <h1>Observations</h1>
+<h2>Path</h2>
+<pre><code>/observations
+</code></pre>
+<h2>Parameters</h2>
+<ul>
+<li><code>nearby</code> (string, required): pair of coordinates separated by comma;</li>
+<li><code>limit</code> (integer, optional, default = 5): number of positions to include in the response.</li>
+</ul>
+<h2>Examples</h2>
+<p>Query positions nearby a pair of coordinates:</p>
+<p><a href="http://nightlights.us-west-2.elasticbeanstalk.com/observations?nearby=-1.285400390625,8.233237111274565">/observations?nearby=-1.285400390625,8.233237111274565</a></p>
+<p>Increase number of returned positions:</p>
+<p><a href="http://nightlights.us-west-2.elasticbeanstalk.com/observations?nearby=-1.285400390625,8.233237111274565&amp;limit=10">/observations?nearby=-1.285400390625,8.233237111274565&amp;limit=10</a></p>
+<h2>Responses</h2>
+<h3>Success 200</h3>
+<p>Returns a GeoJSON object containing features nearby passed coordinates. Each feature represents the center of a 15 arc-second cell scanned by <a href="https://en.wikipedia.org/wiki/Visible_Infrared_Imaging_Radiometer_Suite">VIIRS</a>. Feature properties have a <code>data</code> key, which is an array containing observation value <code>rade9</code> and timestamp <code>scanned_at</code>.</p>
+<p><code>rade9</code> is VIIRS visible wavelength radiance value (unit = W/(cm^2 -sr)) multiplied by 10^9, final unit is nano watts per square centimeter per steradian nW/(cm^2 -sr).</p>
+<p>Example response:</p>
+<pre><code>{
+  &quot;type&quot;: &quot;FeatureCollection&quot;,
+  &quot;features&quot;: [
+    {
+      &quot;type&quot;: &quot;Feature&quot;,
+      &quot;geometry&quot;: {
+        &quot;type&quot;: &quot;Point&quot;,
+        &quot;coordinates&quot;: [
+          -1.36992582,
+          8.15081722
+        ]
+      },
+      &quot;properties&quot;: {
+        &quot;id&quot;: &quot;s100451&quot;,
+        &quot;data&quot;: [
+          {
+            &quot;rade9&quot;: 0.05272794,
+            &quot;scanned_at&quot;: &quot;2012-04-23T02:04:00.000Z&quot;
+          },
+          {
+            &quot;rade9&quot;: 0.24038182,
+            &quot;scanned_at&quot;: &quot;2012-04-24T01:47:00.000Z&quot;
+          },
+          {
+            &quot;rade9&quot;: 0.14193553,
+            &quot;scanned_at&quot;: &quot;2012-04-29T01:50:00.000Z&quot;
+          },
+          {
+            &quot;rade9&quot;: 0.61558354,
+            &quot;scanned_at&quot;: &quot;2012-05-12T01:05:00.000Z&quot;
+          },
+          {
+            &quot;rade9&quot;: -0.03179271,
+            &quot;scanned_at&quot;: &quot;2012-05-27T01:27:00.000Z&quot;
+          },
+          {
+            &quot;rade9&quot;: 0.35491008,
+            &quot;scanned_at&quot;: &quot;2012-06-11T01:43:00.000Z&quot;
+          },
+          {
+            &quot;rade9&quot;: 0.13056859,
+            &quot;scanned_at&quot;: &quot;2012-06-12T01:26:00.000Z&quot;
+          },
+          {
+            &quot;rade9&quot;: -0.04864002,
+            &quot;scanned_at&quot;: &quot;2012-06-24T00:58:00.000Z&quot;
+          },
+          {
+            &quot;rade9&quot;: -0.20773731,
+            &quot;scanned_at&quot;: &quot;2012-07-17T02:07:00.000Z&quot;
+          }
+      }
+    }
+    ]
+}
+</code></pre>
+<h3>Errors (4xx, 5xx)</h3>
+<p>In case of error, the server will respond with a HTTP error status code and a JSON containing a <code>message</code> property describing the error. Examples:</p>
+<pre><code>HTTP/1.1 400 Bad request
+{
+    &quot;message&quot;: &quot;Invalid &quot;limit&quot; parameter, must be an integer lower or equal to 10.&quot;
+}
+</code></pre>
+<pre><code>HTTP/1.1 500 Internal error
+{
+    &quot;message&quot;: &quot;Internal error.&quot;
+}
+</code></pre>
 
                 </div>
               </div>
@@ -146,12 +229,12 @@
                   <ul>
                     <li>
                       
-                        <a href="http://localhost:3000/" class="pa-prev" title="View previous post"><span>Prev</span></a>
+                        <a href="https://wbg-bigdata.github.io/global-nightlights-api/" class="pa-prev" title="View previous post"><span>Prev</span></a>
                       
                     </li>
                     <li>
                       
-                        <a href="http://localhost:3000/about" class="pa-next" title="View next post"><span>Next</span></a>
+                        <a href="https://wbg-bigdata.github.io/global-nightlights-api/about" class="pa-next" title="View next post"><span>Next</span></a>
                       
                     </li>
                   </ul>
@@ -168,7 +251,7 @@
         <div class="inner">
           <p>
             <a href="https://developmentseed.org" title="Visit Development Seed website">
-              <span><img src="http://localhost:3000/assets/graphics/layout/devseed-logo-symbol.svg" alt="Development Seed logo symbol" width="512" height="152" /></span>
+              <span><img src="https://wbg-bigdata.github.io/global-nightlights-api/assets/graphics/layout/devseed-logo-symbol.svg" alt="Development Seed logo symbol" width="512" height="152" /></span>
               <strong>Development Seed</strong>
               <small>2018</small>
             </a>
@@ -179,12 +262,8 @@
     </div>
     <!--/ page -->
 
-    <!-- build:js assets/scripts/vendor.js -->
-<script src="/assets/scripts/vendor.js"></script>
-<!-- endbuild -->
+    <script src="https://wbg-bigdata.github.io/global-nightlights-api/assets/scripts/vendor-6a7a701ede.js"></script>
 
-<!-- build:js assets/scripts/bundle.js -->
-<script src="/assets/scripts/bundle.js"></script>
-<!-- endbuild -->
+<script src="https://wbg-bigdata.github.io/global-nightlights-api/assets/scripts/bundle-c0e3796cfe.js"></script>
   </body>
 </html>
