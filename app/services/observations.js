@@ -72,10 +72,10 @@ module.exports = function() {
 
       // Prepare query
       const observationsQuery = `
-      SELECT *
-      FROM observations
-      WHERE "positionId" = ANY(ARRAY['${positionIds.join("','")}'])
-      ORDER BY scanned_at;
+        SELECT "positionId", rade9, scanned_at
+        FROM observations
+        WHERE "positionId" = ANY(ARRAY['${positionIds.join("','")}'])
+        ORDER BY scanned_at;
       `;
 
       try {
@@ -86,6 +86,11 @@ module.exports = function() {
         // Add observations to respective position
         observations.forEach(o => {
           if (positions[o.positionId] && positions[o.positionId].data) {
+
+            // Convert string to number
+            if (o.rade9) o.rade9 = parseFloat(o.rade9);
+
+            // Push observation to position's data array
             positions[o.positionId].data.push(o);
           }
         });
