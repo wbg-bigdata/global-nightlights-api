@@ -1,9 +1,17 @@
 const _ = require("lodash");
-const errors = require("@feathersjs/errors");
 const logger = require("../logger");
 
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+function isInt(value) {
+  var x;
+  if (isNaN(value)) {
+    return false;
+  }
+  x = parseFloat(value);
+  return (x | 0) === x;
 }
 
 module.exports = function() {
@@ -12,16 +20,18 @@ module.exports = function() {
   app.get("/observations", async function(req, res) {
     const sequelize = app.get("sequelizeClient");
 
-    let err;
     const geojson = {
       type: "FeatureCollection",
       features: []
     };
 
+    const { nearby, limit } = req.query;
+
     // Validate "nearby" parameter
-    const { nearby } = req.query;
     if (!nearby) {
-      err = new errors.BadRequest('Missing "nearby" parameter.');
+      return res.status(400).json({
+        message: 'Missing "nearby" parameter.'
+      });
     } else {
       const position = nearby.split(",");
       if (
@@ -30,18 +40,27 @@ module.exports = function() {
         !isNumeric(position[0]) ||
         !isNumeric(position[1])
       ) {
-        err = new errors.BadRequest(
-          'Invalid "nearby" parameter, should be a pair of decimal values separated with comma (x,y).'
-        );
+        return res.status(400).json({
+          message:
+            'Invalid "nearby" parameter, should be a pair of decimal values separated by comma (x,y).'
+        });
       }
+    }
+
+    // Validate "nearby" parameter
+    if (limit && (!isInt(limit) || parseInt(limit) > 20)) {
+      return res.status(400).json({
+        message:
+          'Invalid "limit" parameter, must be an integer lower or equal to 10.'
+      });
     }
 
     // Get positions
     const nearestPositionsQuery = `
-      SELECT *
+      SELECT id, geometry
       FROM positions
       ORDER BY geometry <-> st_setsrid(st_makepoint(${nearby}),4326)
-      LIMIT 1;
+      LIMIT ${limit || 5};
     `;
 
     logger.info(`${req.ip} is querying observations nearby ${nearby}.`);
@@ -52,7 +71,8 @@ module.exports = function() {
       positions = results[0];
     } catch (sequelizeError) {
       logger.error(sequelizeError.message);
-      if (sequelizeError) return res.status(500).json({ message: "Internal error." });
+      if (sequelizeError)
+        return res.status(500).json({ message: "Internal error." });
     }
 
     if (positions.length > 0) {
@@ -86,7 +106,6 @@ module.exports = function() {
         // Add observations to respective position
         observations.forEach(o => {
           if (positions[o.positionId] && positions[o.positionId].data) {
-
             // Convert string to number
             if (o.rade9) o.rade9 = parseFloat(o.rade9);
 
@@ -117,16 +136,13 @@ module.exports = function() {
           // Add feature
           geojson.features.push(feature);
         });
-
       } catch (sequelizeError) {
         logger.error(sequelizeError.message);
-        if (sequelizeError) return res.status(500).json({ message: "Internal error." });
+        if (sequelizeError)
+          return res.status(500).json({ message: "Internal error." });
       }
     }
 
-    if (err)
-      return res.status(err.code).json(err.toJSON());
-    else
-      return res.json(geojson);
+    return res.json(geojson);
   });
 };
