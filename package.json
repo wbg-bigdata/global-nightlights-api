@@ -2,6 +2,7 @@
   "name": "global-nightlights-api-docs",
   "version": "0.1.0",
   "description": "Global Night Lights API docs",
+  "homepage": "https://wbg-bigdata.github.io/global-nightlights-api",
   "repository": {
     "type": "git",
     "url": "https://github.com/developmentseed/global-nightlights-api-docs"
