@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include('../includes/meta', {title: site.title, description: site.description}) %>
+    <%- include('../includes/styles') %>
+  </head>
+  <body>
+    <!-- page -->
+    <div class="page">
+
+      <header class="page__header" role="banner">
+        <div class="inner">
+          <div class="page__headline">
+            <a href="/" title="Visit homepage">
+              <h1 class="page__title"><%= site.title %></h1>
+              <p class="page__subtitle"><%= site.description %></p>
+            </a>
+          </div>
+          <div class="page__browser pb" data-hook="menu:wrapper">
+            <h2 class="pb__title"><a href="#ppn__contents" title="Show/hide" class="pb__toggle" data-hook="menu:toggle"><span>Navigation & Colophon</span></a></h2>
+            <div id="pb__contents" class="pb__contents">
+              <div class="inner">
+                <%- include('../includes/navigation') %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="page__body" role="main">
+        <div class="inner">
+
+          <% if (site.attribution && site.attribution.name) { %>
+          <!-- attribution -->
+          <address class="page__attribution pa">
+            <div class="pa__label">
+              <small><%= site.attribution.role %></small>
+              <a href="<%= site.attribution.url %>" title="Visit">
+                <strong><%= site.attribution.name %></strong>
+              </a>
+            </div>
+            <% if (site.attribution.logo) { %>
+            <div class="pa__logo">
+              <a href="<%= site.attribution.url %>" title="Visit">
+                <img alt="<%= site.attribution.name %> logo" src="<%= site.baseurl %>/assets/graphics/content/<%= site.attribution.logo %>" />
+              </a>
+            </div>
+            <% } %>
+          </address>
+          <!--/ attribution -->
+          <% } %>
+
+          <!-- inpage -->
+          <article class="inpage">
+            <header class="inpage__header">
+              <div class="inner">
+                
+                <div class="inpage__headline">
+                  <p class="inpage__subtitle"><%= section.label %></p>
+                  <h1 class="inpage__title"><%= title %></h1>
+                </div>
+
+              </div>
+            </header>
+
+            <div class="inpage__body">
+              <div class="inner">
+                <div class="prose prose--responsive">
+                  <%- contents %>
+                </div>
+              </div>
+            </div>
+
+            <footer class="inpage__footer">
+              <div class="inner">
+                <nav class="inpage__actions">
+                  <ul>
+                    <li>
+                      <% if (typeof previous !== 'undefined') { %>
+                        <a href="<%- site.baseurl %>/<%= previous.path %>" class="pa-prev" title="View previous post"><span>Prev</span></a>
+                      <% } else { %>
+                        <a href="#" class="pa-prev disabled" title="View previous post"><span>Prev</span></a>
+                      <% } %>
+                    </li>
+                    <li>
+                      <% if (typeof next !== 'undefined') { %>
+                        <a href="<%- site.baseurl %>/<%= next.path %>" class="pa-next" title="View next post"><span>Next</span></a>
+                      <% } else { %>
+                        <a href="#" class="pa-next disabled" title="View next post"><span>Next</span></a>
+                      <% } %>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </footer>
+          </article>
+          <!--/ inpage -->
+
+        </div>
+      </main>
+
+      <footer class="page__footer" role="contentinfo">
+        <div class="inner">
+          <p>
+            <a href="https://developmentseed.org" title="Visit Development Seed website">
+              <span><img src="<%- site.baseurl %>/assets/graphics/layout/devseed-logo-symbol.svg" alt="Development Seed logo symbol" width="512" height="152" /></span>
+              <strong>Development Seed</strong>
+              <small><%- (new Date()).getFullYear() %></small>
+            </a>
+          </p>
+        </div>
+      </footer>
+
+    </div>
+    <!--/ page -->
+
+    <%- include('../includes/scripts') %>
+  </body>
+</html>

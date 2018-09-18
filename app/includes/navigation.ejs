@@ -1,0 +1,11 @@
+<nav class="page__prime-nav ppn">
+  <% var sections = hierarchy.children.posts.children %>
+  <% var secKeys = Object.keys(sections).sort() %>
+
+  <% secKeys.forEach(function (k) { %>
+  <section class="ppn__section">
+    <h3 class="ppn__section-title"><%= site.sectionsMeta[k] %></h3>
+    <%- include('../includes/nav-item', {children: sections[k].children}) %>
+  </section>
+  <% }) %>
+</nav>
