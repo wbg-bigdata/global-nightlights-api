@@ -12,7 +12,7 @@ Node.js 8+, PostgreSQL and Docker are required.
 
 ### Database setup
 
-1. Download the latest PostgreSQL dump.
+1. Download the latest [PostgreSQL dump](https://wbg-bigdata.github.io/global-nightlights-api/about/).
 2. Start the database container:
 
     `docker-compose up`
