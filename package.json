@@ -15,7 +15,6 @@
   "bugs": {
     "url": "https://github.com/developmentseed/global-nightlights-api-docs/issues"
   },
-  "homepage": "",
   "scripts": {
     "postinstall": "[ -f _config-dev.js ] || echo \"module.exports = {\n  baseurl: 'http://localhost:3000'\n};\" > _config-dev.js",
     "serve": "DS_ENV=development gulp collecticons && DS_ENV=development gulp serve",
@@ -60,6 +59,7 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-standard": "^3.0.1",
+    "gh-pages": "^2.0.0",
     "gulp": "^3.9.1",
     "gulp-cache": "^1.0.1",
     "gulp-csso": "^3.0.0",
@@ -97,7 +97,5 @@
     "vinyl-source-stream": "^2.0.0",
     "watchify": "^3.9.0"
   },
-  "dependencies": {
-    "gh-pages": "^2.0.0"
-  }
+  "dependencies": {}
 }
