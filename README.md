@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-Node.js 8+, PostgreSQL and Docker are required. 
+Node.js 10+, PostgreSQL and Docker are required. 
 
 ### Clone locally and install modules
 
