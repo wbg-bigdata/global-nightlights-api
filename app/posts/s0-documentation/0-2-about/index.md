@@ -17,8 +17,8 @@ Please visit the README for [import instructions](https://github.com/wbg-bigdata
 
 ### Production database
 
-- [global-nightlights-20180917](https://s3-us-west-2.amazonaws.com/global-nighlights-data/global-nightlights-20180917)
+- <a href="https://s3.amazonaws.com/nightlights/postgresql-dumps/global-nightlights-20190326" target="_blank">global-nightlights-20190326</a>
 
 ### Raw data
 
-- [ghana_daily_viirs_values-20180917](https://s3-us-west-2.amazonaws.com/global-nighlights-data/ghana_daily_viirs_values-20180917)
+- <a href="https://s3.amazonaws.com/nightlights/ghana_daily_viirs_values-20180917" target="_blank">ghana_daily_viirs_values-20180917</a>
