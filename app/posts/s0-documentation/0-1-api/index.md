@@ -22,12 +22,11 @@ permalink: /api
 
 Query positions nearby a pair of coordinates:
 
-[/observations?nearby=-1.285400390625,8.233237111274565](http://nightlights.us-west-2.elasticbeanstalk.com/observations?nearby=-1.285400390625,8.233237111274565)
+<a href="https://global-nightlights-api.devseed.com/observations?nearby=-1.285400390625,8.233237111274565" target="_blank">/observations?nearby=-1.285400390625,8.233237111274565</a>
 
 Increase number of returned positions:
 
-[/observations?nearby=-1.285400390625,8.233237111274565&limit=10](http://nightlights.us-west-2.elasticbeanstalk.com/observations?nearby=-1.285400390625,8.233237111274565&limit=10)
-
+<a href="https://global-nightlights-api.devseed.com/observations?nearby=-1.285400390625,8.233237111274565&limit=10" target="_blank">/observations?nearby=-1.285400390625,8.233237111274565&limit=10</a>
 
 ## Responses
 
