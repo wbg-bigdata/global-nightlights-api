@@ -9,28 +9,34 @@
     "url": "https://www.devseed.com"
   },
   "contributors": [],
-  "bugs": {},
-  "directories": {
-    "lib": "app"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wbg-bigdata/global-nightlights-api.git"
   },
   "license": "MIT",
   "engines": {
-    "node": ">= 10.x",
-    "yarn": ">= 0.18.0"
+    "node": ">= 10.x"
   },
   "scripts": {
     "eslint": "eslint app/. --config .eslintrc.json",
     "dev": "NODE_ENV=development ./node_modules/.bin/nodemon app/",
-    "start": "node app/"
+    "start": "node app/",
+    "start-db": "docker-compose --project-name nightlights-dev up",
+    "migrate-dev-db": "NODE_ENV=development node_modules/.bin/knex migrate:latest"
   },
   "dependencies": {
     "@feathersjs/configuration": "^2.0.2",
     "@feathersjs/express": "^1.2.5",
     "@feathersjs/feathers": "^3.2.1",
+    "commander": "^2.20.0",
     "compression": "^1.7.3",
     "cors": "^2.8.4",
+    "csv": "^5.1.1",
+    "fast-glob": "^2.2.6",
     "feathers-sequelize": "^3.1.2",
+    "glob": "^7.1.4",
     "helmet": "^3.13.0",
+    "knex": "^0.16.5",
     "lodash": "^4.17.10",
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
