@@ -113,14 +113,11 @@ data/
 .tmp/
 build/
 
-# Ignore feathers configuration files other then the default
-config/*
-!config/default.json
-!config/custom-environment-variables.json
-
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
 dumps
+
+config/local.json

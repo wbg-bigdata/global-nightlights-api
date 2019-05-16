@@ -1,6 +1,5 @@
 {
   "host": "HOST",
   "port": "PORT",
-  "public": "../public/",
-  "postgres": "DB_CONNECTION_STRING"
+  "pgConnectionString": "PG_CONNECTION_STRING"
 }

@@ -1,0 +1,3 @@
+{
+  "pgConnectionString": "postgres://nightlights:nightlights@localhost:15432/nightlights"
+}

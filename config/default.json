@@ -2,5 +2,5 @@
   "host": "localhost",
   "port": 3030,
   "public": "../public/",
-  "postgres": "postgres://nightlights:nightlights@localhost:15432/nightlights"
+  "pgConnectionString": ""
 }

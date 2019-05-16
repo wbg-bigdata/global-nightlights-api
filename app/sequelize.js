@@ -38,8 +38,8 @@ const operatorsAliases = {
 };
 
 module.exports = function(app) {
-  const connectionString = app.get("postgres");
-  const sequelize = new Sequelize(connectionString, {
+  const pgConnectionString = app.get("pgConnectionString");
+  const sequelize = new Sequelize(pgConnectionString, {
     dialect: "postgres",
     logging: false,
     operatorsAliases,
