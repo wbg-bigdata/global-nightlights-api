@@ -38,6 +38,11 @@ module.exports = async (glob, command) => {
             };
           }
 
+          if (!p.hasOwnProperty("id"))
+            throw Error(
+              "Missing headers. Please refer to ingest instructions."
+            );
+
           p.population = parseFloat(p.population);
           p.n_sets = parseFloat(p.n_sets);
 

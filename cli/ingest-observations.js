@@ -38,6 +38,11 @@ module.exports = async (glob, command) => {
             };
           }
 
+          if (!p.hasOwnProperty("positionId"))
+            throw Error(
+              "Missing headers. Please refer to ingest instructions."
+            );
+
           // Parse numbers
           p.rade9 = parseFloat(p.rade9);
           p.rad = parseFloat(p.rad);
