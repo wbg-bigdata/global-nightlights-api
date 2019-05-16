@@ -92,9 +92,9 @@ Ingest a positions file that does not have headers:
 
     node ./cli/ ingest-positions --no-headers <data-dir>/positions.csv
 
-Ingest a positions file that has headers:
+Ingest a positions file that has headers (`--no-headers` is omitted):
 
-    node ./cli/ ingest-positions --no-headers <data-dir>/positions.csv
+    node ./cli/ ingest-positions <data-dir>/positions.csv
 
 Ingest multiple positions files where their names start with "positions":
 
@@ -106,9 +106,9 @@ Ingest a observations file that does not have headers:
 
     node ./cli/ ingest-observations --no-headers <data-dir>/observations.csv
 
-Ingest a observations file that has headers:
+Ingest a observations file that headers (`--no-headers` is omitted):
 
-    node ./cli/ ingest-observations --no-headers <data-dir>/observations.csv
+    node ./cli/ ingest-observations <data-dir>/observations.csv
 
 Ingest multiple observations files where their names start with "observations":
 
