@@ -10,9 +10,7 @@ const pgConnectionString = config.get("pgConnectionString");
 
 const actionHandler = fn => async (...args) => {
   if (!pgConnectionString || pgConnectionString.length === 0) {
-    print("ERROR: A PostgreSQL connection string is needed. Use:");
-    print();
-    print("  export PG_CONNECTION_STRING=connection-string");
+    print("ERROR: A PostgreSQL connection string is needed, please check README.md.");
     print();
     process.exit(1);
   }

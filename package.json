@@ -21,7 +21,7 @@
     "eslint": "eslint app/. --config .eslintrc.json",
     "dev": "NODE_ENV=development ./node_modules/.bin/nodemon app/",
     "start": "node app/",
-    "start-db": "docker-compose --project-name nightlights-dev up",
+    "start-dev-db": "docker-compose --project-name nightlights-dev up",
     "migrate-dev-db": "NODE_ENV=development node_modules/.bin/knex migrate:latest"
   },
   "dependencies": {
