@@ -1,4 +1,4 @@
-const db = require("./db");
+const db = require("../lib/knex");
 const { print, readCsv, ls } = require("./utils");
 
 /**
