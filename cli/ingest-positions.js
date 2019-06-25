@@ -1,5 +1,6 @@
 const db = require("../lib/knex");
 const { print, readCsv, ls } = require("./utils");
+const updateCountries = require('./update-countries');
 
 /**
  * Commander program
@@ -40,7 +41,7 @@ module.exports = async (glob, command) => {
 
           if (!p.hasOwnProperty("id"))
             throw Error(
-              "Missing headers. Please refer to ingest instructions."
+              "Missing 'id' field. Please refer to documentation."
             );
 
           p.population = parseFloat(p.population);
@@ -49,14 +50,16 @@ module.exports = async (glob, command) => {
           return p;
         });
 
-        print(`    Saving to database...`);
-
+        print(`    Ingesting...`);
         await db.transaction(async trx => {
           await trx.batchInsert("positions", positions);
         });
 
         print(`    Done!`);
       }
+
+      // Update countries list
+      await updateCountries(command);
     } else {
       print("No files found.");
     }
