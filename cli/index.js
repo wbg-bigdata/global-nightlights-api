@@ -3,6 +3,7 @@ const config = require("config");
 const pkg = require("../package");
 const ingestPositionsCmd = require("./ingest-positions");
 const ingestObservationsCmd = require("./ingest-observations");
+const updateCountriesCmd = require("./update-countries");
 
 const { print } = require("./utils");
 
@@ -47,5 +48,11 @@ program
   .description("Ingest observations files.")
   .option('--no-headers', 'Input file does not have headers.')
   .action(actionHandler(ingestObservationsCmd));
+
+program
+  .command("update-countries")
+  .description("Update country list.")
+  .option('--seed', 'Clear existing countries (if any) and ingest countries seed file.')
+  .action(actionHandler(updateCountriesCmd));
 
 program.parse(process.argv);
