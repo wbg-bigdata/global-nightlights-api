@@ -17,58 +17,58 @@ const countriesPath = join(__dirname, "..", "lib", "countries.json");
  */
 module.exports = async command => {
   try {
-    print(`Updating countries...`);
+    await db.transaction(async trx => {
+      print(`Updating countries...`);
 
-    // If
-    if (command.seed) {
-      print(`  Ingesting seed file...`);
-      print(`    Reading countries.json...`);
-      let countries = await fs.readJSON(countriesPath);
+      if (command.seed) {
+        print(`  Ingesting seed file...`);
+        print(`    Reading countries.json...`);
+        let countries = await fs.readJSON(countriesPath);
 
-      // Clear country list
-      print(`    Clearing current list of countries...`);
-      await db("countries").del();
+        // Clear country list
+        print(`    Clearing current list of countries...`);
+        await trx("countries").del();
 
-      // Format countries from countries.json
-      countries = countries.map(c => {
-        return {
-          id: c["alpha-3"],
-          name: c["name"]
-        };
-      });
+        // Format countries from countries.json
+        countries = countries.map(c => {
+          return {
+            id: c["alpha-3"],
+            name: c["name"]
+          };
+        });
 
-      // Insert countries
-      print(`    Inserting countries found...`);
-      await db("countries").insert(countries);
-    }
+        // Insert countries
+        print(`    Inserting countries found...`);
+        await trx("countries").insert(countries);
+      }
 
-    // Get existing country codes at positions table
-    const { rows: countries } = await db.raw(`
-      SELECT
-        left(id, 3) as id,
-        ST_Extent(geometry) as bbox
-      FROM
-        positions
-      GROUP BY
-        left(id, 3);
-    `);
+      // Get existing country codes at positions table
+      const { rows: countries } = await trx.raw(`
+        SELECT
+          left(id, 3) as id,
+          ST_Extent(geometry) as bbox
+        FROM
+          positions
+        GROUP BY
+          left(id, 3);
+      `);
 
-    print(`  Countries with positions: ${countries.length}`);
+      print(`  ${countries.length} countries with positions, updating: `);
 
-    print(`  Saving...`);
+      // Clear current bboxes
+      await trx.raw(`UPDATE countries set bbox = null;`);
 
-    // Clear current bboxes
-    await db.raw(`UPDATE countries set bbox = null;`);
+      // Update countries found
+      for (let i = 0; i < countries.length; i++) {
+        const country = countries[i];
+        print(`    - ${country.id}`);
+        await trx("countries")
+          .update({ bbox: country.bbox })
+          .where({ id: country.id });
+      }
 
-    // Update countries found
-    for (let i = 0; i < countries.length; i++) {
-      const country = countries[i];
-      await db("countries")
-        .update({ bbox: country.bbox })
-        .where({ id: country.id });
-    }
-
-    print(`Done!`);
+      print(`Done!`);
+    });
   } catch (error) {
     print(`An error has occurred, no data was written:`);
     print(`  ${error.detail || error.message}`);
