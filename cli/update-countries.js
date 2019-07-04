@@ -10,7 +10,7 @@ const countriesPath = join(__dirname, "..", "lib", "countries.json");
 /**
  * Commander program
  *
- * Usage: update-country-boxes
+ * Usage: update-country
  *
  * Update bounding boxes of countries based on available positions
  *
